@@ -23,8 +23,34 @@ data Expresion
 
 t1 :: Expresion
 t2 :: Expresion
-{-Comment-}
+t3 :: Expresion
+
+{- Ejercicio 1-}
+
 t1 = Literal(42)
+
 t2 = Suma(Literal(27))(t1)
---t3 = (t2 * (t2 * 1)) + (- ((t1 + 0) / 3))
-t3 = Suma(Multiplicacion(t2)(Multiplicacion(t2)(Literal(1))))(Negativo(Division(Suma(t1)(Literal(0)))(Literal(3))))
+
+t3 = Suma(Multiplicacion(t2)(Multiplicacion(t2)(Literal(1))))
+	(Negativo(Division(Suma(t1)(Literal(0)))(Literal(3))))
+
+{- Ejercicio 2-}
+
+evaluar :: Expresion -> Double
+evaluar
+	= \ case
+		Suma	e1 e2 -> evaluar(e1) + evaluar(e2)
+		Resta	e1 e2 -> evaluar(e1) - evaluar(e2)
+		Multiplicacion	e1 e2 -> evaluar(e1) * evaluar(e2)
+		Division	e1 e2 -> evaluar(e1) / evaluar(e2)
+		Negativo	e -> -evaluar(e)
+		Literal	n -> fromIntegral(n)
+
+{- Ejercicio 3-}
+
+
+
+{- Ejercicio 4-}
+
+--sumaLiterales :: Expresion -> Integer
+--sumaLiterales = 
