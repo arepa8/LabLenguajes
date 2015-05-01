@@ -48,7 +48,15 @@ evaluar
 
 {- Ejercicio 3-}
 
-
+operaciones :: Expresion -> Integer
+operaciones
+	= \ case
+		Suma	e1 e2 -> operaciones(e1) + operaciones(e2) + 1
+		Resta	e1 e2 -> operaciones(e1) + operaciones(e2) + 1
+		Multiplicacion	e1 e2 -> operaciones(e1) + operaciones(e2) + 1
+		Division	e1 e2 -> operaciones(e1) + operaciones(e2) + 1
+		Negativo	e -> operaciones(e) + 1
+		Literal	n -> 0
 
 {- Ejercicio 4-}
 
