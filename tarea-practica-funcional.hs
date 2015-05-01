@@ -23,4 +23,6 @@ data Expresion
 
 t1 :: Expresion
 t2 :: Expresion
-t3 :: Expresion
+
+t1 = Literal(42)
+t2 = Suma(Literal(27))(t1)
