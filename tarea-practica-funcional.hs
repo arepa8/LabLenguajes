@@ -60,5 +60,38 @@ operaciones
 
 {- Ejercicio 4-}
 
---sumaLiterales :: Expresion -> Integer
---sumaLiterales = 
+sumaLiterales :: Expresion -> Integer
+sumaLiterales
+	= \ case
+		Suma	e1 e2 -> sumaLiterales(e1) + sumaLiterales(e2)
+		Resta	e1 e2 -> sumaLiterales(e1) + sumaLiterales(e2)
+		Multiplicacion	e1 e2 -> sumaLiterales(e1) + sumaLiterales(e2)
+		Division	e1 e2 -> sumaLiterales(e1) + sumaLiterales(e2)
+		Negativo	e -> sumaLiterales(e)
+		Literal	n -> n
+
+{- Ejercicio 5-}
+
+literales :: Expresion -> [Integer]
+literales
+	= \ case
+		Suma	e1 e2 -> literales(e1) ++ literales(e2)
+		Resta	e1 e2 -> literales(e1) ++ literales(e2)
+		Multiplicacion	e1 e2 -> literales(e1) ++ literales(e2)
+		Division	e1 e2 -> literales(e1) ++ literales(e2)
+		Negativo	e -> literales(e)
+		Literal	n -> [n]
+
+{- Ejercicio 6-}
+
+altura :: Expresion -> Integer
+altura
+	= \ case 
+		Suma	e1 e2 -> max(altura(e1))(altura(e2)) + 1
+		Resta	e1 e2 -> max(altura(e1))(altura(e2)) + 1
+		Multiplicacion	e1 e2 -> max(altura(e1))(altura(e2)) + 1
+		Division	e1 e2 -> max(altura(e1))(altura(e2)) + 1
+		Negativo	e -> altura(e) + 1
+		Literal	n -> 0
+
+{- Ejercicio 7-}
