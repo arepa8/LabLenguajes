@@ -114,10 +114,27 @@ data Elemento
 
 
 htmlE, headE, bodyE, divE :: [Elemento] -> Elemento
-htmlE	=	(Elemento) ("html") (singleton ("xmlns")("http://www.w3.org/1999/xhtml")) f
-headE	=	(Elemento) ("head") empty f
-bodyE	=	(Elemento) ("body") empty f
-divE 	=	(Elemento) ("div") empty f
+htmlE	f =	(Elemento) ("html") (singleton ("xmlns")("http://www.w3.org/1999/xhtml")) f
+headE	f =	(Elemento) ("head") empty f
+bodyE	f =	(Elemento) ("body") empty f
+divE 	f =	(Elemento) ("div") empty f
+
+
+{-	Ejercicio 10  -}
+
+styleE, titleE, hiE, pE :: String -> Elemento
+styleE  s	=	(Elemento) ("style") (singleton ("type")("text/css")) [Texto s]
+titleE  s	=	(Elemento) ("title") empty [Texto s]
+hiE	    s	=	(Elemento) ("h1") empty [Texto s]
+pE		s 	=	(Elemento) ("p") empty [Texto s]
+
+
+
+
+
+
+
+
 
 
 
