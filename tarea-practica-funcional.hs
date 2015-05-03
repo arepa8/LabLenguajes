@@ -95,3 +95,34 @@ altura
 		Literal	n -> 0
 
 {- Ejercicio 7-}
+
+
+
+
+
+{-	Ejercicio 9	-}
+
+type Atributos
+	= Map String String
+
+newtype Documento
+	= Documento Elemento
+
+data Elemento
+	= Elemento String Atributos [Elemento]
+	| Texto String
+
+
+htmlE, headE, bodyE, divE :: [Elemento] -> Elemento
+htmlE	=	(Elemento) ("html") (singleton ("xmlns")("http://www.w3.org/1999/xhtml")) f
+headE	=	(Elemento) ("head") empty f
+bodyE	=	(Elemento) ("body") empty f
+divE 	=	(Elemento) ("div") empty f
+
+
+
+
+
+
+
+
