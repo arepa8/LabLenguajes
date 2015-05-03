@@ -100,17 +100,19 @@ altura
 
 
 
-{-	Ejercicio 9	-}
+{-	Ejercicio 9-}
 
 type Atributos
 	= Map String String
 
 newtype Documento
 	= Documento Elemento
+	deriving Show
 
 data Elemento
 	= Elemento String Atributos [Elemento]
 	| Texto String
+	deriving Show
 
 
 htmlE, headE, bodyE, divE :: [Elemento] -> Elemento
@@ -120,7 +122,7 @@ bodyE	f =	(Elemento) ("body") empty f
 divE 	f =	(Elemento) ("div") empty f
 
 
-{-	Ejercicio 10  -}
+{-	Ejercicio 10-}
 
 styleE, titleE, hiE, pE :: String -> Elemento
 styleE  s	=	(Elemento) ("style") (singleton ("type")("text/css")) [Texto s]
@@ -128,22 +130,41 @@ titleE  s	=	(Elemento) ("title") empty [Texto s]
 hiE	    s	=	(Elemento) ("h1") empty [Texto s]
 pE		s 	=	(Elemento) ("p") empty [Texto s]
 
-{-	Ejercicio 11  -}
+{-	Ejercicio 11-}
 
 showP :: Show a => a -> Elemento
 showP a = (Elemento) (show a) empty [Texto (show a)]
 
 
+{- Ejercicio 12-}
 
+class RenderXHTML a where
+	render :: a -> String
 
+instance RenderXHTML Documento where
+	render (Documento raiz)
+		= encabezado ++ render raiz
+		where
+			encabezado
+				= unlines
+				[ "<?xml version='1.0' encoding='UTF-8'?>"
+				, "<!DOCTYPE html"
+				, "     PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'"
+				, "     'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>"
+				]
 
+instance RenderXHTML Atributos where
+	render (Atributos raiz)
+		= lista ++ render raiz
+		where
+			lista
+				= unlines
+				[ singleton("foo")("bar baz")
+				, singleton("quux")("meh")
+				, singleton("wtf")("wow://such.example.com/amaze/")
+				]
 
-
-
-
-
-
-
-
-
+instance RenderXHTML Elemento where
+	render (Elemento raiz)
+		= undefined
 
