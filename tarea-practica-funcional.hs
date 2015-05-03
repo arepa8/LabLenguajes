@@ -97,19 +97,53 @@ altura
 {- Ejercicio 7-}
 
 
-{- Ejercicio 8-}
 
 
-{-Parte 3-}
+
+{-	Ejercicio 9	-}
 
 type Atributos
 	= Map String String
 
 newtype Documento
 	= Documento Elemento
-	deriving Show
 
 data Elemento
 	= Elemento String Atributos [Elemento]
 	| Texto String
-	deriving Show
+
+
+htmlE, headE, bodyE, divE :: [Elemento] -> Elemento
+htmlE	f =	(Elemento) ("html") (singleton ("xmlns")("http://www.w3.org/1999/xhtml")) f
+headE	f =	(Elemento) ("head") empty f
+bodyE	f =	(Elemento) ("body") empty f
+divE 	f =	(Elemento) ("div") empty f
+
+
+{-	Ejercicio 10  -}
+
+styleE, titleE, hiE, pE :: String -> Elemento
+styleE  s	=	(Elemento) ("style") (singleton ("type")("text/css")) [Texto s]
+titleE  s	=	(Elemento) ("title") empty [Texto s]
+hiE	    s	=	(Elemento) ("h1") empty [Texto s]
+pE		s 	=	(Elemento) ("p") empty [Texto s]
+
+{-	Ejercicio 11  -}
+
+showP :: Show a => a -> Elemento
+showP a = (Elemento) (show a) empty [Texto (show a)]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
