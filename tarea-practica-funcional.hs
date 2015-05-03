@@ -95,3 +95,21 @@ altura
 		Literal	n -> 0
 
 {- Ejercicio 7-}
+
+
+{- Ejercicio 8-}
+
+
+{-Parte 3-}
+
+type Atributos
+	= Map String String
+
+newtype Documento
+	= Documento Elemento
+	deriving Show
+
+data Elemento
+	= Elemento String Atributos [Elemento]
+	| Texto String
+	deriving Show
