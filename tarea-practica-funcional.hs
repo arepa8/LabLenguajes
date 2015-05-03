@@ -128,6 +128,10 @@ titleE  s	=	(Elemento) ("title") empty [Texto s]
 hiE	    s	=	(Elemento) ("h1") empty [Texto s]
 pE		s 	=	(Elemento) ("p") empty [Texto s]
 
+{-	Ejercicio 11  -}
+
+showP :: Show a => a -> Elemento
+showP a = (Elemento) (show a) empty [Texto (show a)]
 
 
 
